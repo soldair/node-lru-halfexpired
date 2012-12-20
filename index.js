@@ -26,7 +26,7 @@ module.exports = function(options){
         error = 'halfexpired';
       }
         
-      if(fill) fill.call(this,error,k,v,data.e);
+      if(fill) fill.call(this,error,k,v,data.e,exp-this.time());
       if(error != 'expired') return v;
       
     },
