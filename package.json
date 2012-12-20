@@ -1,6 +1,6 @@
 {
   "name": "lru-halfexpired",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "lru cache but get supports a fill callback",
   "main": "index.js",
   "scripts": {

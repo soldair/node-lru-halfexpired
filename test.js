@@ -32,7 +32,6 @@ test("repopulate at half exp with fill api",function(t){
 
   t.plan(7);
 
-  // this is bad form. it looks non blocking but its blocking.
   c.get('b',function(err,k,v){
     t.ok(!err,'should not have error if item is not half expired');
     c._t += 2;
@@ -51,6 +50,5 @@ test("repopulate at half exp with fill api",function(t){
     t.equals(res,1,'get should return result and still cal fill');
   });
 
-  // see!
 });
 
