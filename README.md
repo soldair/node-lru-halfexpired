@@ -14,13 +14,14 @@ var cache = require('halfexpired-lru');
 
 cache.set('a',1);
 
-cache.get('a',function(err,key,value,ttl){
+cache.get('a',function(err,key,value,ttl,remaining){
   if(err == 'halfexpired') {
-    // stop it from being half expired.
-    cache.set(key,value,ttl);
     request(url,function(err,data){
-      if(err) console.log('that flakey api failed again! good thing my value is not completely expired ;)');
-      else cache.set(key,value,ttl);
+      if(err) {
+	// if i set it halfexpired will hit next in half the remaining time.
+	cache.set(key,value,remaining);
+	console.log('that flakey api failed again! good thing my value is not completely expired ;)');
+      } else cache.set(key,value,ttl);
     })
   }
 });
